@@ -1,0 +1,48 @@
+<!doctype html>
+<html ng-app="store">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>shaping up with angular</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+  <body ng-controller="StoreController as store">
+
+
+    <div ng-repeat="product in store.products">
+      <h2>{{product.name}}</h2>
+      <em class="pull-right"> {{product.price | currency}} </em>
+      <img ng-src="{{product.images[0].full}}" height="100" width="200" />
+       <section ng-init="tab=1">
+        <ul class="nav nav-pills">
+          <li><a href ng-click="tab = 1">Description</a></li>
+          <li><a href ng-click="tab = 2">Specifications</a></li>
+          <li><a href ng-click="tab = 3">Reviews</a></li>
+        </ul>
+
+        <div class="panel" ng-show="tab === 1">
+          <h4>Description</h4>
+          <p>{{product.description}}</p>
+        </div>
+        <div class="panel" ng-show="tab === 2">
+          <h4>Specifications</h4>
+          <blockquote>None yet</blockquote>
+        </div>
+        <div class="panel" ng-show="tab === 3">
+          <h4>Reviews</h4>
+          <blockquote>None yet</blockquote>
+        </div>
+      </section>
+      <button ng-show="product.canPurchase"> Add to Cart </button>
+    </div>
+
+    <script src="./bower_components/angular/angular.js"></script>
+    <script src="scripts/app.js"></script>
+  </body>
+</html>
